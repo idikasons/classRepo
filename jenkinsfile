@@ -8,9 +8,10 @@ pipeline {
     stage ('Build') {
       steps {
       sh 'mvn clean install -f MyWebApp/pom.xml'
-       }
-     }
-   }
+        }
+      }
+    }
+  }
     stage ('Code Quality') {
       steps {
         withSonarQubeEnv('SonarQube') {
