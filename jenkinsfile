@@ -10,14 +10,14 @@ pipeline {
       sh 'mvn clean install -f MyWebApp/pom.xml'
        }
      }
-   }
+   } 
     stage ('Code Quality') {
       steps {
         withSonarQubeEnv('SonarQube') {
         sh 'mvn -f MyWebApp/pom.xml sonar:sonar'
         }
       }
-    }
+    } 
     stage ('JaCoCo') {
       steps {
       jacoco()
@@ -28,11 +28,11 @@ pipeline {
       nexusArtifactUploader(
       nexusVersion: 'nexus3',
       protocol: 'http',
-      nexusUrl: 'nexus_url:8081',
+      nexusUrl: 'http://ec2-54-82-166-52.compute-1.amazonaws.com:8081',
       groupId: 'myGroupId',
       version: '1.0-SNAPSHOT',
       repository: 'maven-snapshots',
-      credentialsId: 'fc0f1694-3036-41fe-b3e3-4c5d96fcfd26',
+      credentialsId: '8abca366-0645-4585-87c2-7177189512d3',
       artifacts: [
       [artifactId: 'MyWebApp',
       classifier: '',
@@ -44,7 +44,7 @@ pipeline {
     stage ('DEV Deploy') {
       steps {
       echo "deploying to DEV Env "
-      deploy adapters: [tomcat9(credentialsId: '268c42f6-f2f5-488f-b2aa-f2374d229b2e', path: '', url: 'http://your_public_dns:8080')], contextPath: null, war: '**/*.war'
+      deploy adapters: [tomcat9(credentialsId: 'bfc61c7a-d226-448f-a69a-9f30dcc2f094', path: '', url: 'http://ec2-3-92-136-128.compute-1.amazonaws.com:8080')], contextPath: null, war: '**/*.war'
       }
     }
     stage ('Slack Notification') {
