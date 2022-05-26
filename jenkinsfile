@@ -8,8 +8,9 @@ pipeline {
     stage ('Build') {
       steps {
       sh 'mvn clean install -f MyWebApp/pom.xml'
-      }
-    }
+       }
+     }
+   }
     stage ('Code Quality') {
       steps {
         withSonarQubeEnv('SonarQube') {
@@ -50,5 +51,6 @@ pipeline {
       steps {
         echo "deployed to DEV Env successfully"
         slackSend(channel:'your slack channel_name', message: "Job is successful, here is the info - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-      }
-    
+       }
+     }
+  }
