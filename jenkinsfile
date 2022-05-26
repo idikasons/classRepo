@@ -14,8 +14,9 @@ pipeline {
       steps {
         withSonarQubeEnv('SonarQube') {
         sh 'mvn -f MyWebApp/pom.xml sonar:sonar'
-        }
-      }
+         }
+       }
+     }
     stage ('JaCoCo') {
       steps {
       jacoco()
@@ -49,7 +50,6 @@ pipeline {
       steps {
         echo "deployed to DEV Env successfully"
         slackSend(channel:'your slack channel_name', message: "Job is successful, here is the info - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
-       }
-     }
-  }
-}
+        }
+      }
+   }
