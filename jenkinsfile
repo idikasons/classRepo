@@ -52,7 +52,7 @@ pipeline {
         slackSend(channel:'your slack channel_name', message: "Job is successful, here is the info - Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
         }
       }
-   }
+    }
     stage ('DEV Approve') {
       steps {
       echo "Taking approval from DEV Manager for QA Deployment"
@@ -61,7 +61,7 @@ pipeline {
         }
       }
     }
-     stage ('QA Deploy') {
+    stage ('QA Deploy') {
       steps {
         echo "deploying to QA Env "
         deploy adapters: [tomcat9(credentialsId: 'bfc61c7a-d226-448f-a69a-9f30dcc2f094', path: '', url: 'http://ec2-3-92-136-128.compute-1.amazonaws.com:8080')], contextPath: null, war: '**/*.war'
