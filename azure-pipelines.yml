@@ -9,13 +9,13 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '23f67b58-109f-47b6-a4f6-f0537417e24d'
+  azureSubscription: '7abc0496-6b14-4200-a75e-027f88c8a008'
 
   # Web app name
-  webAppName: 'FirstClassWebApp'
+  webAppName: 'SignatureWebApp'
 
   # Environment name
-  environmentName: 'FirstClassWebApp'
+  environmentName: 'SignatureWebApp'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
